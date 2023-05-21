@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import Home from './components/Home'
+import Planets from './components/Planets'
+import News from './components/News'
+import Forum from './components/Forum'
+import './App.css'
 
 function App() {
+  let component;
+  switch (window.location.pathname){
+    case "/":
+      component = <Home />;
+      break;
+    case "/planets":
+      component = <Planets />;
+      break;
+    case "/news":
+      component = <News />;
+      break;
+    case "/forum":
+      component = <Forum />;
+      break;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+        {component};
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
