@@ -6,15 +6,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const navbuttons = document.querySelectorAll("#nav-button");
-let navCurrStr = sessionStorage.getItem("navCurrStr");
 
 for (let i = 0; i < navbuttons.length; i++) {
   navbuttons[i].addEventListener("click", function() {
-    sessionStorage.setItem("navCurrStr", i)
+    sessionStorage.setItem("navCurrStr", i);
   });  
 }
 
-if (navCurrStr != 0) {
+let navCurrStr = sessionStorage.getItem("navCurrStr");
+if (navCurrStr !== null) {
   let navCurr = parseInt(navCurrStr);
   let current = document.getElementsByClassName("active");
   if (current.length > 0) { 
@@ -23,7 +23,7 @@ if (navCurrStr != 0) {
   navbuttons[navCurr].className += " active";
 }
 else{
-  if(navbuttons[0].classList.contains("active")==0){
+  if(navbuttons[0].classList.contains("active")===0){
     navbuttons[0].className += " active";
   }
 }
@@ -43,7 +43,4 @@ root.render(
     <App />
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

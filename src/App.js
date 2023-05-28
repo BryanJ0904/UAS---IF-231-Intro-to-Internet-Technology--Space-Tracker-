@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import Home from './components/Home'
 import Planets from './components/Planets'
 import News from './components/News'
@@ -7,7 +5,7 @@ import Forum from './components/Forum'
 import './App.css'
 
 function App() {
-  let component;
+  let component = <Home />;
   switch (window.location.pathname){
     case "/":
       component = <Home />;
@@ -29,4 +27,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

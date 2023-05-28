@@ -43,11 +43,15 @@
 } */
 
 header{
-  background-color: white;
+  color: white;
   position: fixed;
   text-align: center;
   width: 100%;
   z-index: 999;
+}
+
+#nav-button{
+  color: #fff;
 }
 
 header .logos {
@@ -57,6 +61,9 @@ header .logos {
   letter-spacing: 2px;
 }
 
+.active{
+  background-color:rgb(180, 240, 15, 0,5);
+}
 a:hover{
   color:rgb(180, 240, 15);
 }
