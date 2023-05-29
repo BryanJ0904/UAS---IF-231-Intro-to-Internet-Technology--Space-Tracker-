@@ -244,15 +244,15 @@ function Planets() {
               <div>
                 <h1 className="planet-name">{selectedPlanet.name}</h1>
                 <br />
-                <p>Mass: {selectedPlanet.mass}</p>
-                <p>Radius: {selectedPlanet.radius}</p>
-                <p>Period: {selectedPlanet.period}</p>
-                <p>Semi-major Axis: {selectedPlanet.semi_major_axis}</p>
+                <p>Mass: {selectedPlanet.mass} Jupiter</p>
+                <p>Radius: {selectedPlanet.radius} Jupiter</p>
+                <p>Period: {selectedPlanet.period} Days</p>
+                <p>Semi-major Axis: {selectedPlanet.semi_major_axis}°</p>
                 <p>Temperature: {selectedPlanet.temperature}°K</p>
                 <p>
-                  Distance (light year): {selectedPlanet.distance_light_year}
+                  Distance: {selectedPlanet.distance_light_year} Light years
                 </p>
-                <p>Host Star Mass: {selectedPlanet.host_star_mass}</p>
+                <p>Host Star Mass: {selectedPlanet.host_star_mass} Sun</p>
                 <p>
                   Host Star Temperature: {selectedPlanet.host_star_temperature}
                   °K

@@ -51,7 +51,6 @@ function News() {
         imageTitle.textContent =
           imageData.collection.items[latestImageIndex].data[0].title;
 
-        console.log(eventData.events[0]);
         const firstEvent = eventData.events[0];
         const firstEventImg = document.getElementById("event1-img");
         const firstEventTitle = document.getElementById("event1-title");
@@ -61,7 +60,6 @@ function News() {
         firstEventLink.href = firstEvent.sources[0].url;
         firstEventLink.textContent = "Click here to learn more";
 
-        console.log(eventData.events[1]);
         const secondEvent = eventData.events[1];
         const secondEventImg = document.getElementById("event2-img");
         const secondEventTitle = document.getElementById("event2-title");
@@ -198,7 +196,7 @@ function News() {
             <img id="event1-img" className="newsimg" src={second} alt=""></img>
           </div>
           <div className="col-9 p-3">
-            <h1 id="event1-title"></h1>
+            <h1 id="event1-title">Nothing to show here..</h1>
             <a id="event1-link">
               There's no more news available currently
             </a>
