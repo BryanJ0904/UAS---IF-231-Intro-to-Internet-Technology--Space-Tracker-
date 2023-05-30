@@ -5,6 +5,9 @@ import "./News.css";
 import second from "../assets/2.jpg";
 
 function News() {
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().split('T')[0];
+  console.log(formattedDate)
   const apiKey = "UcZAqj0dTdN5CeMHia4tklGhc7mK2zPqYUBT6RZ2";
   const [lastPage, setLastPage] = useState(1);
   useEffect(() => {
@@ -19,8 +22,8 @@ function News() {
         `https://images-api.nasa.gov/search?q=&media_type=image&year_start=2023&year_end=2023&page=${lastPage}`
       ).then((response) => response.json()),
       fetch(
-        `https://eonet.gsfc.nasa.gov/api/v2.1/events?days=1`
-      ).then((response) => response.json()),
+        `https://api.nasa.gov/DONKI/notifications?startDate=${formattedDate}&endDate=${formattedDate}&type=all&api_key=${apiKey}`
+      ).then((response) => response.json())
     ])
       .then(([apodData, roverData, imageData, eventData]) => {
 
@@ -51,34 +54,29 @@ function News() {
         imageTitle.textContent =
           imageData.collection.items[latestImageIndex].data[0].title;
 
-        const firstEvent = eventData.events[0];
-        const firstEventImg = document.getElementById("event1-img");
+        const firstEvent = eventData[0];
         const firstEventTitle = document.getElementById("event1-title");
         const firstEventLink = document.getElementById("event1-link");
 
-        firstEventTitle.textContent = firstEvent.title;
-        firstEventLink.href = firstEvent.sources[0].url;
+        firstEventTitle.textContent = firstEvent.messageBody.split('#')[16].split(':')[1].split('.')[0].replace(/\n\n/g, '');
+        firstEventLink.href = firstEvent.messageURL;
         firstEventLink.textContent = "Click here to learn more";
 
-        const secondEvent = eventData.events[1];
-        const secondEventImg = document.getElementById("event2-img");
+        const secondEvent = eventData[1];
         const secondEventTitle = document.getElementById("event2-title");
         const secondEventLink = document.getElementById("event2-link");
 
-        secondEventTitle.textContent = secondEvent.title;
-        secondEventLink.href = secondEvent.sources[0].url;
+        secondEventTitle.textContent = secondEvent.messageBody.split('#')[16].split(':')[1].split('.')[0].replace(/\n\n/g, '');
+        secondEventLink.href = secondEvent.messageURL;
         secondEventLink.textContent = "Click here to learn more";
 
-        console.log(eventData.events[2]);
-        const thirdEvent = eventData.events[2];
-        const thirdEventImg = document.getElementById("event3-img");
+        const thirdEvent = eventData[2];
         const thirdEventTitle = document.getElementById("event3-title");
         const thirdEventLink = document.getElementById("event3-link");
 
-        thirdEventTitle.textContent = thirdEvent.title;
-        thirdEventLink.href = thirdEvent.sources[0].url;
+        thirdEventTitle.textContent = thirdEvent.messageBody.split('#')[16].split(':')[1].split('.')[0].replace(/\n\n/g, '');
+        thirdEventLink.href = thirdEvent.messageURL;
         thirdEventLink.textContent = "Click here to learn more";
-
       })
       .catch((error) => {
         console.log("An error occurred:", error);

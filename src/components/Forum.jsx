@@ -4,23 +4,25 @@ import "./Forum.css";
 
 class Forum extends React.Component {
   componentDidMount() {
-    const savedChat = sessionStorage.getItem("chat");
+    const savedChat = localStorage.getItem("chat");
     if (savedChat) {
       document.querySelector(".forum-box .inner").innerHTML = savedChat;
     }
   }
 
   updateChatStorage = (chat) => {
-    const savedChat = sessionStorage.getItem("chat");
+    const savedChat = localStorage.getItem("chat");
     const newChat = savedChat ? savedChat + chat : chat;
-    sessionStorage.setItem("chat", newChat);
+    localStorage.setItem("chat", newChat);
   };
 
   handleWhoSubmit = () => {
     let msg = document.getElementById("messageWho").value;
     let who = document.getElementById("who").value;
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split('T')[0];
     if (msg !== "" && who !== "") {
-      let chat = `<p className="message" style="background: #dde0e5; padding: 5px 5px;"><b>${who}</b><br>${msg}</p>`;
+      let chat = `<p className="message" style="background: #dde0e5; padding: 5px 5px;"><b>${who} <span style="color: grey; font-size: 12px; font-style: italic;">at ${formattedDate}</span></b><br>${msg}</p>`;
       document.querySelector(".forum-box .inner").innerHTML += chat;
       document.getElementById("messageWho").value = "";
       document.querySelector(".forum-box .inner").scrollTop = document.querySelector(
